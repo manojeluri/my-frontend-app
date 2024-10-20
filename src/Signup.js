@@ -20,7 +20,7 @@ function Signup() {
     e.preventDefault();
 
     try {
-      const response = await fetch('https://your-heroku-app.herokuapp.com/auth/signup', {
+      const response = await fetch('https://enigmatic-hollows-82185-701449e24cf2.herokuapp.com//auth/signup', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
