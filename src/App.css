@@ -1,20 +1,22 @@
 .app {
+  min-height: 100vh;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .app.light {
-  background-color: #ffffff;
-  color: #000000;
+  background-color: #ffffff; /* Light background */
+  color: #000000; /* Dark text for light theme */
 }
 
 .app.dark {
-  background-color: #121212;
-  color: #ffffff;
+  background-color: #121212; /* Dark background */
+  color: #ffffff; /* Light text for dark theme */
 }
 
 .app-header {
   display: flex;
   justify-content: flex-end;
+  align-items: center;
   padding: 10px 20px;
   background: var(--header-bg-color);
 }
@@ -29,14 +31,16 @@
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+/* Define colors for light theme */
 .app.light .app-header {
   --header-bg-color: #f0f0f0;
-  --button-bg-color: #000;
-  --button-text-color: #fff;
+  --button-bg-color: #000000; /* Dark button in light theme */
+  --button-text-color: #ffffff; /* White text on button in light theme */
 }
 
+/* Define colors for dark theme */
 .app.dark .app-header {
   --header-bg-color: #1f1f1f;
-  --button-bg-color: #fff;
-  --button-text-color: #000;
+  --button-bg-color: #ffffff; /* Light button in dark theme */
+  --button-text-color: #000000; /* Black text on button in dark theme */
 }
