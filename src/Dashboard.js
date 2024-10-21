@@ -5,7 +5,7 @@ import './Dashboard.css';
 
 function Dashboard() {
   const navigate = useNavigate();
-  const { theme, toggleTheme } = useContext(ThemeContext);
+  const { theme } = useContext(ThemeContext);
   const [message, setMessage] = useState('');
   const [lastLogin, setLastLogin] = useState('');
 
@@ -51,14 +51,11 @@ function Dashboard() {
   };
 
   return (
-    <div className="dashboard-container">
+    <div className={`dashboard-container ${theme}`}>
       <div className="dashboard-card">
         <h2 className="dashboard-title">Dashboard</h2>
         <p className="dashboard-message">{message}</p>
         <p className="dashboard-last-login">Last Login: {lastLogin}</p>
-        <button className="theme-toggle-button" onClick={toggleTheme}>
-          Toggle to {theme === 'light' ? 'Dark' : 'Light'} Mode
-        </button>
         <div className="dashboard-buttons">
           <button className="dashboard-profile-button" onClick={goToProfile}>
             Profile

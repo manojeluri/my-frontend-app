@@ -5,7 +5,7 @@ import './Login.css';
 
 function Login() {
   const navigate = useNavigate();
-  const { theme, toggleTheme } = useContext(ThemeContext);
+  const { theme } = useContext(ThemeContext);
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -41,18 +41,12 @@ function Login() {
     }
   };
 
-  const handleLogout = () => {
-    localStorage.removeItem('token');
-    setMessage('You have been logged out.');
-    navigate('/login');
-  };
-
   const goToSignup = () => {
     navigate('/signup');
   };
 
   return (
-    <div className="login-container">
+    <div className={`login-container ${theme}`}>
       <div className="login-card">
         <h2 className="login-title">Login</h2>
         <form onSubmit={handleSubmit} className="login-form">
@@ -76,19 +70,16 @@ function Login() {
           />
           <button className="login-button" type="submit">Login</button>
         </form>
-        <button className="theme-toggle-button" onClick={toggleTheme}>
-          Toggle to {theme === 'light' ? 'Dark' : 'Light'} Mode
-        </button>
         <p className="login-message">{message}</p>
         <p className="login-signup-prompt">
           Don't have an account?{' '}
-          <button className="login-signup-button" onClick={goToSignup}>
+          <button
+            className="login-signup-button"
+            onClick={goToSignup}
+          >
             Signup
           </button>
         </p>
-        <button className="logout-button" onClick={handleLogout}>
-          Logout
-        </button>
       </div>
     </div>
   );

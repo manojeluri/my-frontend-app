@@ -5,7 +5,7 @@ import './Signup.css';
 
 function Signup() {
   const navigate = useNavigate();
-  const { theme, toggleTheme } = useContext(ThemeContext);
+  const { theme } = useContext(ThemeContext);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -48,7 +48,7 @@ function Signup() {
   };
 
   return (
-    <div className="signup-container">
+    <div className={`signup-container ${theme}`}>
       <div className="signup-card">
         <h2 className="signup-title">Signup</h2>
         <form onSubmit={handleSubmit} className="signup-form">
@@ -89,9 +89,6 @@ function Signup() {
           />
           <button className="signup-button" type="submit">Signup</button>
         </form>
-        <button className="theme-toggle-button" onClick={toggleTheme}>
-          Toggle to {theme === 'light' ? 'Dark' : 'Light'} Mode
-        </button>
         <p className="signup-message">{message}</p>
         <p className="signup-login-prompt">
           Already have an account?{' '}
