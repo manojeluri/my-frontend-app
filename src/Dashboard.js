@@ -1,11 +1,11 @@
-// Dashboard.js
-
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './Dashboard.css'; // Import the CSS file for styling
+import { ThemeContext } from './ThemeContext';
+import './Dashboard.css';
 
 function Dashboard() {
   const navigate = useNavigate();
+  const { theme, toggleTheme } = useContext(ThemeContext);
   const [message, setMessage] = useState('');
   const [lastLogin, setLastLogin] = useState('');
 
@@ -20,7 +20,7 @@ function Dashboard() {
     fetch('https://enigmatic-hollows-82185-701449e24cf2.herokuapp.com/auth/dashboard', {
       method: 'GET',
       headers: {
-        Authorization: `Bearer ${token}`, // Include Bearer prefix
+        Authorization: `Bearer ${token}`,
       },
     })
       .then((response) => {
@@ -36,8 +36,7 @@ function Dashboard() {
           setLastLogin(new Date(data.lastLogin).toLocaleString());
         }
       })
-      .catch((error) => {
-        console.error('Error:', error);
+      .catch(() => {
         setMessage('An error occurred while fetching data.');
       });
   }, [navigate]);
@@ -47,7 +46,6 @@ function Dashboard() {
     navigate('/login');
   };
 
-  // Navigate to the Profile page
   const goToProfile = () => {
     navigate('/profile');
   };
@@ -58,6 +56,9 @@ function Dashboard() {
         <h2 className="dashboard-title">Dashboard</h2>
         <p className="dashboard-message">{message}</p>
         <p className="dashboard-last-login">Last Login: {lastLogin}</p>
+        <button className="theme-toggle-button" onClick={toggleTheme}>
+          Toggle to {theme === 'light' ? 'Dark' : 'Light'} Mode
+        </button>
         <div className="dashboard-buttons">
           <button className="dashboard-profile-button" onClick={goToProfile}>
             Profile

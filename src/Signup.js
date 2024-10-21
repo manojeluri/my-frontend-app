@@ -1,18 +1,17 @@
-// Signup.js
-
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './Signup.css'; // Import the CSS file for styling
+import { ThemeContext } from './ThemeContext';
+import './Signup.css';
 
 function Signup() {
   const navigate = useNavigate();
+  const { theme, toggleTheme } = useContext(ThemeContext);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     password: '',
     confirmPassword: '',
   });
-
   const [message, setMessage] = useState('');
 
   const { name, email, password, confirmPassword } = formData;
@@ -23,7 +22,6 @@ function Signup() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
       const response = await fetch('https://enigmatic-hollows-82185-701449e24cf2.herokuapp.com/auth/signup', {
         method: 'POST',
@@ -41,7 +39,6 @@ function Signup() {
         setMessage(data.message);
       }
     } catch (error) {
-      console.error('Signup error:', error);
       setMessage('An error occurred during signup.');
     }
   };
@@ -92,6 +89,9 @@ function Signup() {
           />
           <button className="signup-button" type="submit">Signup</button>
         </form>
+        <button className="theme-toggle-button" onClick={toggleTheme}>
+          Toggle to {theme === 'light' ? 'Dark' : 'Light'} Mode
+        </button>
         <p className="signup-message">{message}</p>
         <p className="signup-login-prompt">
           Already have an account?{' '}

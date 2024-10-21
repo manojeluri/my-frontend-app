@@ -1,14 +1,15 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './Login.css'; // Import the CSS file for styling
+import { ThemeContext } from './ThemeContext';
+import './Login.css';
 
 function Login() {
-  const navigate = useNavigate(); // Hook for navigation
+  const navigate = useNavigate();
+  const { theme, toggleTheme } = useContext(ThemeContext);
   const [formData, setFormData] = useState({
     email: '',
     password: '',
   });
-
   const [message, setMessage] = useState('');
 
   const { email, password } = formData;
@@ -19,7 +20,6 @@ function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
       const response = await fetch('https://enigmatic-hollows-82185-701449e24cf2.herokuapp.com/auth/login', {
         method: 'POST',
@@ -30,28 +30,23 @@ function Login() {
       const data = await response.json();
 
       if (response.ok) {
-        console.log('Login successful:', data);
         setMessage(`Welcome, ${data.name}!`);
         localStorage.setItem('token', data.token);
         navigate('/dashboard');
       } else {
-        console.log('Login failed:', data);
         setMessage(data.message);
       }
     } catch (error) {
-      console.error('Login error:', error);
       setMessage('An error occurred during login.');
     }
   };
 
-  // Handle logout functionality
   const handleLogout = () => {
     localStorage.removeItem('token');
     setMessage('You have been logged out.');
     navigate('/login');
   };
 
-  // Handle navigation to the Signup page
   const goToSignup = () => {
     navigate('/signup');
   };
@@ -81,13 +76,13 @@ function Login() {
           />
           <button className="login-button" type="submit">Login</button>
         </form>
+        <button className="theme-toggle-button" onClick={toggleTheme}>
+          Toggle to {theme === 'light' ? 'Dark' : 'Light'} Mode
+        </button>
         <p className="login-message">{message}</p>
         <p className="login-signup-prompt">
           Don't have an account?{' '}
-          <button
-            className="login-signup-button"
-            onClick={goToSignup}
-          >
+          <button className="login-signup-button" onClick={goToSignup}>
             Signup
           </button>
         </p>

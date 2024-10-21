@@ -1,31 +1,68 @@
-.App {
+/* Base Styles */
+.app {
   text-align: center;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+.app-header {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.App-link {
+/* Light Theme */
+.app.light {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.app.light .app-header {
+  background-color: #f0f0f0;
+}
+
+.app.light .theme-toggle-button {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+/* Dark Theme */
+.app.dark {
+  background-color: #121212;
+  color: #ffffff;
+}
+
+.app.dark .app-header {
+  background-color: #282c34;
+}
+
+.app.dark .theme-toggle-button {
+  background-color: #ffffff;
+  color: #121212;
+}
+
+/* Button Styles */
+.theme-toggle-button {
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 5px;
+  margin-top: 20px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.app-link {
   color: #61dafb;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
 }
 
 @keyframes App-logo-spin {
