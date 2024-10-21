@@ -1,5 +1,3 @@
-// Login.js
-
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Login.css'; // Import the CSS file for styling
@@ -46,6 +44,13 @@ function Login() {
     }
   };
 
+  // Handle logout functionality
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    setMessage('You have been logged out.');
+    navigate('/login');
+  };
+
   // Handle navigation to the Signup page
   const goToSignup = () => {
     navigate('/signup');
@@ -86,6 +91,9 @@ function Login() {
             Signup
           </button>
         </p>
+        <button className="logout-button" onClick={handleLogout}>
+          Logout
+        </button>
       </div>
     </div>
   );
