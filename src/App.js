@@ -6,34 +6,30 @@ import Dashboard from './Dashboard';
 import Profile from './Profile';
 import PrivateRoute from './PrivateRoute';
 import { ThemeProvider, ThemeContext } from './ThemeContext';
-import './App.css'; // Ensure styles for light and dark themes are applied
+import './App.css';
 
-function Header() {
+function App() {
   const { theme, toggleTheme } = useContext(ThemeContext);
 
   return (
-    <header className="app-header">
-      <button onClick={toggleTheme} className="theme-toggle-button">
-        Toggle to {theme === 'light' ? 'Dark' : 'Light'} Mode
-      </button>
-    </header>
-  );
-}
-
-function App() {
-  return (
     <ThemeProvider>
-      <Router>
-        <Header />
-        <Routes>
-          <Route path="/" element={<Signup />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
-          <Route path="/profile" element={<PrivateRoute><Profile /></PrivateRoute>} />
-          <Route path="*" element={<h2>404 Not Found</h2>} />
-        </Routes>
-      </Router>
+      <div className={`app ${theme}`}>
+        <Router>
+          <header className="app-header">
+            <button onClick={toggleTheme} className="theme-toggle-button">
+              Toggle to {theme === 'light' ? 'Dark' : 'Light'} Mode
+            </button>
+          </header>
+          <Routes>
+            <Route path="/" element={<Signup />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
+            <Route path="/profile" element={<PrivateRoute><Profile /></PrivateRoute>} />
+            <Route path="*" element={<h2>404 Not Found</h2>} />
+          </Routes>
+        </Router>
+      </div>
     </ThemeProvider>
   );
 }
