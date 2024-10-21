@@ -1,25 +1,43 @@
+// Dashboard.js
+
 import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 function Dashboard() {
+  const history = useHistory();
   const [message, setMessage] = useState('');
 
   useEffect(() => {
     const token = localStorage.getItem('token');
 
-    fetch('https://your-heroku-app.herokuapp.com/auth/dashboard', {
+    if (!token) {
+      // If no token, redirect to login
+      history.push('/login');
+      return;
+    }
+
+    fetch('https://enigmatic-hollows-82185-701449e24cf2.herokuapp.com/auth/dashboard', {
       method: 'GET',
       headers: {
-        'Content-Type': 'application/json',
-        Authorization: token,
+        Authorization: `Bearer ${token}`, // Include Bearer prefix
       },
     })
-      .then((response) => response.text())
-      .then((data) => setMessage(data))
-      .catch((error) => console.error('Error:', error));
-  }, []);
+      .then((response) => {
+        if (response.status === 401) {
+          // Unauthorized, redirect to login
+          history.push('/login');
+        }
+        return response.json();
+      })
+      .then((data) => setMessage(data.message))
+      .catch((error) => {
+        console.error('Error:', error);
+        setMessage('An error occurred while fetching data.');
+      });
+  }, [history]);
 
   return (
-    <div>
+    <div style={{ textAlign: 'center' }}>
       <h2>Dashboard</h2>
       <p>{message}</p>
     </div>

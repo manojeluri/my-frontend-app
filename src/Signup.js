@@ -1,6 +1,10 @@
+// Signup.js
+
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 function Signup() {
+  const history = useHistory(); // Hook for navigation
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -12,11 +16,11 @@ function Signup() {
 
   const { name, email, password, confirmPassword } = formData;
 
-  const handleChange = e => {
+  const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async e => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
@@ -30,7 +34,8 @@ function Signup() {
 
       if (response.ok) {
         setMessage(data.message);
-        // Optionally, redirect to login page
+        // Redirect to Dashboard
+        history.push('/dashboard');
       } else {
         setMessage(data.message);
       }
@@ -44,10 +49,17 @@ function Signup() {
     <div style={{ textAlign: 'center' }}>
       <h2>Signup</h2>
       <form onSubmit={handleSubmit}>
-        <input name="name" value={name} onChange={handleChange} placeholder="Name" /><br />
-        <input name="email" value={email} onChange={handleChange} placeholder="Email" /><br />
-        <input name="password" type="password" value={password} onChange={handleChange} placeholder="Password" /><br />
-        <input name="confirmPassword" type="password" value={confirmPassword} onChange={handleChange} placeholder="Confirm Password" /><br />
+        <input name="name" value={name} onChange={handleChange} placeholder="Name" required /><br />
+        <input name="email" type="email" value={email} onChange={handleChange} placeholder="Email" required /><br />
+        <input name="password" type="password" value={password} onChange={handleChange} placeholder="Password" required /><br />
+        <input
+          name="confirmPassword"
+          type="password"
+          value={confirmPassword}
+          onChange={handleChange}
+          placeholder="Confirm Password"
+          required
+        /><br />
         <button type="submit">Signup</button>
       </form>
       <p>{message}</p>

@@ -1,6 +1,10 @@
+// Login.js
+
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 function Login() {
+  const history = useHistory(); // Hook for navigation
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -10,11 +14,11 @@ function Login() {
 
   const { email, password } = formData;
 
-  const handleChange = e => {
+  const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async e => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
@@ -30,7 +34,8 @@ function Login() {
         setMessage(`Welcome, ${data.name}!`);
         // Store token in localStorage
         localStorage.setItem('token', data.token);
-        // Optionally, redirect to dashboard
+        // Redirect to Dashboard
+        history.push('/dashboard');
       } else {
         setMessage(data.message);
       }
@@ -44,8 +49,8 @@ function Login() {
     <div style={{ textAlign: 'center' }}>
       <h2>Login</h2>
       <form onSubmit={handleSubmit}>
-        <input name="email" value={email} onChange={handleChange} placeholder="Email" /><br />
-        <input name="password" type="password" value={password} onChange={handleChange} placeholder="Password" /><br />
+        <input name="email" type="email" value={email} onChange={handleChange} placeholder="Email" required /><br />
+        <input name="password" type="password" value={password} onChange={handleChange} placeholder="Password" required /><br />
         <button type="submit">Login</button>
       </form>
       <p>{message}</p>
