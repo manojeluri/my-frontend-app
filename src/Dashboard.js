@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import './Dashboard.css'; // Import the CSS file for styling
 
 function Dashboard() {
   const navigate = useNavigate();
@@ -11,7 +12,6 @@ function Dashboard() {
     const token = localStorage.getItem('token');
 
     if (!token) {
-      // If no token, redirect to login
       navigate('/login');
       return;
     }
@@ -24,7 +24,6 @@ function Dashboard() {
     })
       .then((response) => {
         if (response.status === 401) {
-          // Unauthorized, redirect to login
           navigate('/login');
           return null;
         }
@@ -41,20 +40,20 @@ function Dashboard() {
       });
   }, [navigate]);
 
-  // Implement the logout function
   const handleLogout = () => {
-    // Clear the token from localStorage
     localStorage.removeItem('token');
-    // Redirect to login page
     navigate('/login');
   };
 
   return (
-    <div style={{ textAlign: 'center' }}>
-      <h2>Dashboard</h2>
-      <p>{message}</p>
-      {/* Logout button */}
-      <button onClick={handleLogout}>Logout</button>
+    <div className="dashboard-container">
+      <div className="dashboard-card">
+        <h2 className="dashboard-title">Dashboard</h2>
+        <p className="dashboard-message">{message}</p>
+        <button className="dashboard-logout-button" onClick={handleLogout}>
+          Logout
+        </button>
+      </div>
     </div>
   );
 }

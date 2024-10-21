@@ -2,9 +2,10 @@
 
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import './Signup.css'; // Import the CSS file for styling
 
 function Signup() {
-  const navigate = useNavigate(); // Hook for navigation
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -34,9 +35,7 @@ function Signup() {
 
       if (response.ok) {
         setMessage(data.message);
-        // Store token in localStorage
         localStorage.setItem('token', data.token);
-        // Redirect to Dashboard
         navigate('/dashboard');
       } else {
         setMessage(data.message);
@@ -47,43 +46,60 @@ function Signup() {
     }
   };
 
-  // Handle navigation to the Login page
   const goToLogin = () => {
     navigate('/login');
   };
 
   return (
-    <div style={{ textAlign: 'center' }}>
-      <h2>Signup</h2>
-      <form onSubmit={handleSubmit}>
-        <input name="name" value={name} onChange={handleChange} placeholder="Name" required /><br />
-        <input name="email" type="email" value={email} onChange={handleChange} placeholder="Email" required /><br />
-        <input
-          name="password"
-          type="password"
-          value={password}
-          onChange={handleChange}
-          placeholder="Password"
-          required
-        /><br />
-        <input
-          name="confirmPassword"
-          type="password"
-          value={confirmPassword}
-          onChange={handleChange}
-          placeholder="Confirm Password"
-          required
-        /><br />
-        <button type="submit">Signup</button>
-      </form>
-      <p>{message}</p>
-      {/* Add the Login button */}
-      <p>
-        Already have an account?{' '}
-        <button onClick={goToLogin} style={{ background: 'none', border: 'none', color: 'blue', textDecoration: 'underline', cursor: 'pointer' }}>
-          Login
-        </button>
-      </p>
+    <div className="signup-container">
+      <div className="signup-card">
+        <h2 className="signup-title">Signup</h2>
+        <form onSubmit={handleSubmit} className="signup-form">
+          <input
+            className="signup-input"
+            name="name"
+            value={name}
+            onChange={handleChange}
+            placeholder="Name"
+            required
+          />
+          <input
+            className="signup-input"
+            name="email"
+            type="email"
+            value={email}
+            onChange={handleChange}
+            placeholder="Email"
+            required
+          />
+          <input
+            className="signup-input"
+            name="password"
+            type="password"
+            value={password}
+            onChange={handleChange}
+            placeholder="Password"
+            required
+          />
+          <input
+            className="signup-input"
+            name="confirmPassword"
+            type="password"
+            value={confirmPassword}
+            onChange={handleChange}
+            placeholder="Confirm Password"
+            required
+          />
+          <button className="signup-button" type="submit">Signup</button>
+        </form>
+        <p className="signup-message">{message}</p>
+        <p className="signup-login-prompt">
+          Already have an account?{' '}
+          <button className="signup-login-button" onClick={goToLogin}>
+            Login
+          </button>
+        </p>
+      </div>
     </div>
   );
 }

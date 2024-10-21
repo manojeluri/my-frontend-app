@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import './Login.css'; // Import the CSS file for styling
 
 function Login() {
   const navigate = useNavigate(); // Hook for navigation
@@ -33,9 +34,7 @@ function Login() {
       if (response.ok) {
         console.log('Login successful:', data);
         setMessage(`Welcome, ${data.name}!`);
-        // Store token in localStorage
         localStorage.setItem('token', data.token);
-        // Redirect to Dashboard
         navigate('/dashboard');
       } else {
         console.log('Login failed:', data);
@@ -53,44 +52,41 @@ function Login() {
   };
 
   return (
-    <div style={{ textAlign: 'center' }}>
-      <h2>Login</h2>
-      <form onSubmit={handleSubmit}>
-        <input
-          name="email"
-          type="email"
-          value={email}
-          onChange={handleChange}
-          placeholder="Email"
-          required
-        /><br />
-        <input
-          name="password"
-          type="password"
-          value={password}
-          onChange={handleChange}
-          placeholder="Password"
-          required
-        /><br />
-        <button type="submit">Login</button>
-      </form>
-      <p>{message}</p>
-      {/* Add the Signup button */}
-      <p>
-        Don't have an account?{' '}
-        <button
-          onClick={goToSignup}
-          style={{
-            background: 'none',
-            border: 'none',
-            color: 'blue',
-            textDecoration: 'underline',
-            cursor: 'pointer',
-          }}
-        >
-          Signup
-        </button>
-      </p>
+    <div className="login-container">
+      <div className="login-card">
+        <h2 className="login-title">Login</h2>
+        <form onSubmit={handleSubmit} className="login-form">
+          <input
+            className="login-input"
+            name="email"
+            type="email"
+            value={email}
+            onChange={handleChange}
+            placeholder="Email"
+            required
+          />
+          <input
+            className="login-input"
+            name="password"
+            type="password"
+            value={password}
+            onChange={handleChange}
+            placeholder="Password"
+            required
+          />
+          <button className="login-button" type="submit">Login</button>
+        </form>
+        <p className="login-message">{message}</p>
+        <p className="login-signup-prompt">
+          Don't have an account?{' '}
+          <button
+            className="login-signup-button"
+            onClick={goToSignup}
+          >
+            Signup
+          </button>
+        </p>
+      </div>
     </div>
   );
 }
