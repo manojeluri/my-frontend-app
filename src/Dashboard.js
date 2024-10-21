@@ -41,10 +41,20 @@ function Dashboard() {
       });
   }, [navigate]);
 
+  // Implement the logout function
+  const handleLogout = () => {
+    // Clear the token from localStorage
+    localStorage.removeItem('token');
+    // Redirect to login page
+    navigate('/login');
+  };
+
   return (
     <div style={{ textAlign: 'center' }}>
       <h2>Dashboard</h2>
       <p>{message}</p>
+      {/* Logout button */}
+      <button onClick={handleLogout}>Logout</button>
     </div>
   );
 }

@@ -14,7 +14,7 @@ function App() {
         <Route path="/" element={<Signup />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
-        {/* Use PrivateRoute for protected routes */}
+        {/* Protected route */}
         <Route
           path="/dashboard"
           element={
