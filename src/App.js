@@ -5,7 +5,7 @@ import Login from './Login';
 import Dashboard from './Dashboard';
 import Profile from './Profile';
 import PrivateRoute from './PrivateRoute';
-import { ThemeProvider, ThemeContext } from './ThemeContext';
+import { ThemeProvider } from './ThemeContext'; // Only keep ThemeProvider if ThemeContext is not directly used
 import './App.css';
 
 function App() {
