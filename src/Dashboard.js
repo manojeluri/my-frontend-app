@@ -7,6 +7,7 @@ import './Dashboard.css'; // Import the CSS file for styling
 function Dashboard() {
   const navigate = useNavigate();
   const [message, setMessage] = useState('');
+  const [lastLogin, setLastLogin] = useState('');
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -32,6 +33,7 @@ function Dashboard() {
       .then((data) => {
         if (data) {
           setMessage(data.message);
+          setLastLogin(new Date(data.lastLogin).toLocaleString());
         }
       })
       .catch((error) => {
@@ -55,6 +57,7 @@ function Dashboard() {
       <div className="dashboard-card">
         <h2 className="dashboard-title">Dashboard</h2>
         <p className="dashboard-message">{message}</p>
+        <p className="dashboard-last-login">Last Login: {lastLogin}</p>
         <div className="dashboard-buttons">
           <button className="dashboard-profile-button" onClick={goToProfile}>
             Profile
