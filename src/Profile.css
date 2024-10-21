@@ -1,16 +1,16 @@
-/* Dashboard.css */
+/* Profile.css */
 
-.dashboard-container {
+.profile-container {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #f0f4f8;
+    background-color: #f7f9fc;
   }
   
-  .dashboard-card {
+  .profile-card {
     background: white;
-    padding: 20px;
+    padding: 20px 30px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
@@ -18,26 +18,28 @@
     width: 100%;
   }
   
-  .dashboard-title {
+  .profile-title {
     font-size: 24px;
     margin-bottom: 20px;
     color: #333;
   }
   
-  .dashboard-message {
-    font-size: 18px;
-    margin-bottom: 20px;
-    color: #555;
+  .profile-input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 16px;
   }
   
-  .dashboard-buttons {
-    display: flex;
-    justify-content: space-between;
-    gap: 10px;
+  .profile-input:focus {
+    border-color: #007bff;
+    outline: none;
   }
   
-  .dashboard-profile-button,
-  .dashboard-logout-button {
+  .profile-submit-button {
     background-color: #007bff;
     color: white;
     padding: 10px 20px;
@@ -45,11 +47,16 @@
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    width: 45%;
+    width: 100%;
   }
   
-  .dashboard-profile-button:hover,
-  .dashboard-logout-button:hover {
+  .profile-submit-button:hover {
     background-color: #0056b3;
+  }
+  
+  .profile-message {
+    margin-top: 10px;
+    color: #555;
+    font-size: 14px;
   }
   

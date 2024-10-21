@@ -45,14 +45,24 @@ function Dashboard() {
     navigate('/login');
   };
 
+  // Navigate to the Profile page
+  const goToProfile = () => {
+    navigate('/profile');
+  };
+
   return (
     <div className="dashboard-container">
       <div className="dashboard-card">
         <h2 className="dashboard-title">Dashboard</h2>
         <p className="dashboard-message">{message}</p>
-        <button className="dashboard-logout-button" onClick={handleLogout}>
-          Logout
-        </button>
+        <div className="dashboard-buttons">
+          <button className="dashboard-profile-button" onClick={goToProfile}>
+            Profile
+          </button>
+          <button className="dashboard-logout-button" onClick={handleLogout}>
+            Logout
+          </button>
+        </div>
       </div>
     </div>
   );
