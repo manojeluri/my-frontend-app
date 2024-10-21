@@ -1,10 +1,10 @@
 // Login.js
 
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function Login() {
-  const history = useHistory(); // Hook for navigation
+  const navigate = useNavigate(); // Hook for navigation
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -35,7 +35,7 @@ function Login() {
         // Store token in localStorage
         localStorage.setItem('token', data.token);
         // Redirect to Dashboard
-        history.push('/dashboard');
+        navigate('/dashboard');
       } else {
         setMessage(data.message);
       }
@@ -49,8 +49,22 @@ function Login() {
     <div style={{ textAlign: 'center' }}>
       <h2>Login</h2>
       <form onSubmit={handleSubmit}>
-        <input name="email" type="email" value={email} onChange={handleChange} placeholder="Email" required /><br />
-        <input name="password" type="password" value={password} onChange={handleChange} placeholder="Password" required /><br />
+        <input
+          name="email"
+          type="email"
+          value={email}
+          onChange={handleChange}
+          placeholder="Email"
+          required
+        /><br />
+        <input
+          name="password"
+          type="password"
+          value={password}
+          onChange={handleChange}
+          placeholder="Password"
+          required
+        /><br />
         <button type="submit">Login</button>
       </form>
       <p>{message}</p>

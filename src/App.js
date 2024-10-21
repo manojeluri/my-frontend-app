@@ -14,9 +14,8 @@ function App() {
         <Route exact path="/" component={Signup} />
         <Route path="/signup" component={Signup} />
         <Route path="/login" component={Login} />
-        <Route path="/dashboard" component={Dashboard} />
-        {/* Add a catch-all route for 404 Not Found */}
         <PrivateRoute path="/dashboard" component={Dashboard} />
+        {/* Add a catch-all route for 404 Not Found */}
         <Route path="*" component={() => <h2>404 Not Found</h2>} />
       </Switch>
     </Router>
