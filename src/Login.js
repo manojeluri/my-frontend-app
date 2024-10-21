@@ -9,6 +9,7 @@ function Login() {
     email: '',
     password: '',
   });
+
   const [message, setMessage] = useState('');
 
   const { email, password } = formData;
@@ -46,6 +47,11 @@ function Login() {
     }
   };
 
+  // Handle navigation to the Signup page
+  const goToSignup = () => {
+    navigate('/signup');
+  };
+
   return (
     <div style={{ textAlign: 'center' }}>
       <h2>Login</h2>
@@ -69,6 +75,22 @@ function Login() {
         <button type="submit">Login</button>
       </form>
       <p>{message}</p>
+      {/* Add the Signup button */}
+      <p>
+        Don't have an account?{' '}
+        <button
+          onClick={goToSignup}
+          style={{
+            background: 'none',
+            border: 'none',
+            color: 'blue',
+            textDecoration: 'underline',
+            cursor: 'pointer',
+          }}
+        >
+          Signup
+        </button>
+      </p>
     </div>
   );
 }

@@ -47,13 +47,25 @@ function Signup() {
     }
   };
 
+  // Handle navigation to the Login page
+  const goToLogin = () => {
+    navigate('/login');
+  };
+
   return (
     <div style={{ textAlign: 'center' }}>
       <h2>Signup</h2>
       <form onSubmit={handleSubmit}>
         <input name="name" value={name} onChange={handleChange} placeholder="Name" required /><br />
         <input name="email" type="email" value={email} onChange={handleChange} placeholder="Email" required /><br />
-        <input name="password" type="password" value={password} onChange={handleChange} placeholder="Password" required /><br />
+        <input
+          name="password"
+          type="password"
+          value={password}
+          onChange={handleChange}
+          placeholder="Password"
+          required
+        /><br />
         <input
           name="confirmPassword"
           type="password"
@@ -65,6 +77,13 @@ function Signup() {
         <button type="submit">Signup</button>
       </form>
       <p>{message}</p>
+      {/* Add the Login button */}
+      <p>
+        Already have an account?{' '}
+        <button onClick={goToLogin} style={{ background: 'none', border: 'none', color: 'blue', textDecoration: 'underline', cursor: 'pointer' }}>
+          Login
+        </button>
+      </p>
     </div>
   );
 }
