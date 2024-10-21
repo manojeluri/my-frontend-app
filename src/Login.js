@@ -73,10 +73,7 @@ function Login() {
         <p className="login-message">{message}</p>
         <p className="login-signup-prompt">
           Don't have an account?{' '}
-          <button
-            className="login-signup-button"
-            onClick={goToSignup}
-          >
+          <button className="login-signup-button" onClick={goToSignup}>
             Signup
           </button>
         </p>

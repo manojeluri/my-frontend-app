@@ -82,3 +82,40 @@
     color: #0056b3;
   }
 
+/* Common Styles for Light and Dark Themes */
+.light {
+    background-color: #ffffff;
+    color: #000000;
+  }
+  
+  .dark {
+    background-color: #121212;
+    color: #ffffff;
+  }
+  
+  .signup-container,
+  .login-container,
+  .dashboard-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .signup-card,
+  .login-card,
+  .dashboard-card {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .dark .signup-card,
+  .dark .login-card,
+  .dark .dashboard-card {
+    background-color: #333;
+    color: #ffffff;
+  }
+  
