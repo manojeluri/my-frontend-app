@@ -1,18 +1,11 @@
 // PrivateRoute.js
 
 import React from 'react';
-import { Route, Redirect } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 
-function PrivateRoute({ component: Component, ...rest }) {
+function PrivateRoute({ children }) {
   const token = localStorage.getItem('token');
-  return (
-    <Route
-      {...rest}
-      render={(props) =>
-        token ? <Component {...props} /> : <Redirect to="/login" />
-      }
-    />
-  );
+  return token ? children : <Navigate to="/login" />;
 }
 
 export default PrivateRoute;

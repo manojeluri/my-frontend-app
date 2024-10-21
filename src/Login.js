@@ -9,7 +9,6 @@ function Login() {
     email: '',
     password: '',
   });
-
   const [message, setMessage] = useState('');
 
   const { email, password } = formData;
@@ -31,12 +30,14 @@ function Login() {
       const data = await response.json();
 
       if (response.ok) {
+        console.log('Login successful:', data);
         setMessage(`Welcome, ${data.name}!`);
         // Store token in localStorage
         localStorage.setItem('token', data.token);
         // Redirect to Dashboard
         navigate('/dashboard');
       } else {
+        console.log('Login failed:', data);
         setMessage(data.message);
       }
     } catch (error) {

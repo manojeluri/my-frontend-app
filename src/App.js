@@ -1,7 +1,7 @@
 // App.js
 
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Signup from './Signup';
 import Login from './Login';
 import Dashboard from './Dashboard';
@@ -10,14 +10,22 @@ import PrivateRoute from './PrivateRoute';
 function App() {
   return (
     <Router>
-      <Switch>
-        <Route exact path="/" component={Signup} />
-        <Route path="/signup" component={Signup} />
-        <Route path="/login" component={Login} />
-        <PrivateRoute path="/dashboard" component={Dashboard} />
-        {/* Add a catch-all route for 404 Not Found */}
-        <Route path="*" component={() => <h2>404 Not Found</h2>} />
-      </Switch>
+      <Routes>
+        <Route path="/" element={<Signup />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/login" element={<Login />} />
+        {/* Use PrivateRoute for protected routes */}
+        <Route
+          path="/dashboard"
+          element={
+            <PrivateRoute>
+              <Dashboard />
+            </PrivateRoute>
+          }
+        />
+        {/* 404 Not Found Route */}
+        <Route path="*" element={<h2>404 Not Found</h2>} />
+      </Routes>
     </Router>
   );
 }

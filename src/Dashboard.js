@@ -1,12 +1,21 @@
-useEffect(() => {
+// Dashboard.js
+
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+function Dashboard() {
+  const navigate = useNavigate();
+  const [message, setMessage] = useState('');
+
+  useEffect(() => {
     const token = localStorage.getItem('token');
-  
+
     if (!token) {
       // If no token, redirect to login
       navigate('/login');
       return;
     }
-  
+
     fetch('https://enigmatic-hollows-82185-701449e24cf2.herokuapp.com/auth/dashboard', {
       method: 'GET',
       headers: {
@@ -19,13 +28,7 @@ useEffect(() => {
           navigate('/login');
           return null;
         }
-        // Check if the response is JSON
-        const contentType = response.headers.get('content-type');
-        if (contentType && contentType.includes('application/json')) {
-          return response.json();
-        } else {
-          throw new Error('Unexpected response format');
-        }
+        return response.json();
       })
       .then((data) => {
         if (data) {
@@ -37,4 +40,13 @@ useEffect(() => {
         setMessage('An error occurred while fetching data.');
       });
   }, [navigate]);
-  
+
+  return (
+    <div style={{ textAlign: 'center' }}>
+      <h2>Dashboard</h2>
+      <p>{message}</p>
+    </div>
+  );
+}
+
+export default Dashboard;
