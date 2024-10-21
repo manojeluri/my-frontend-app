@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Signup from './Signup';
 import Login from './Login';
@@ -9,17 +9,10 @@ import { ThemeProvider, ThemeContext } from './ThemeContext';
 import './App.css';
 
 function App() {
-  const { theme, toggleTheme } = useContext(ThemeContext);
-
   return (
     <ThemeProvider>
-      <div className={`app ${theme}`}>
-        <Router>
-          <header className="app-header">
-            <button onClick={toggleTheme} className="theme-toggle-button">
-              Toggle to {theme === 'light' ? 'Dark' : 'Light'} Mode
-            </button>
-          </header>
+      <Router>
+        <div className="app">
           <Routes>
             <Route path="/" element={<Signup />} />
             <Route path="/signup" element={<Signup />} />
@@ -28,8 +21,8 @@ function App() {
             <Route path="/profile" element={<PrivateRoute><Profile /></PrivateRoute>} />
             <Route path="*" element={<h2>404 Not Found</h2>} />
           </Routes>
-        </Router>
-      </div>
+        </div>
+      </Router>
     </ThemeProvider>
   );
 }
