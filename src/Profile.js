@@ -84,6 +84,11 @@ function Profile() {
     }
   };
 
+  // Navigate back to the Dashboard page
+  const goToDashboard = () => {
+    navigate('/dashboard');
+  };
+
   return (
     <div className="profile-container">
       <div className="profile-card">
@@ -119,6 +124,10 @@ function Profile() {
           </button>
         </form>
         <p className="profile-message">{message}</p>
+        {/* Add the Dashboard button */}
+        <button className="profile-dashboard-button" onClick={goToDashboard}>
+          Go to Dashboard
+        </button>
       </div>
     </div>
   );
