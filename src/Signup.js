@@ -1,10 +1,10 @@
 // Signup.js
 
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function Signup() {
-  const history = useHistory(); // Hook for navigation
+  const navigate = useNavigate(); // Hook for navigation
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -34,8 +34,10 @@ function Signup() {
 
       if (response.ok) {
         setMessage(data.message);
+        // Store token in localStorage
+        localStorage.setItem('token', data.token);
         // Redirect to Dashboard
-        history.push('/dashboard');
+        navigate('/dashboard');
       } else {
         setMessage(data.message);
       }
